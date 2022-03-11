@@ -13,7 +13,9 @@ const db = require('knex')({
   client: 'pg',
   connection: {
     connectionString: process.env.DATABASE_URL,
-    ssl: true
+	ssl: {
+	    rejectUnauthorized: false
+	 }
   }
 });
 
@@ -53,6 +55,8 @@ app.post('/register', (req,res) => {register.handleRegister(req,res,db,bcrypt)})
 app.listen(process.env.PORT || 3000,() => {
 	console.log(`app is running on port ${process.env.PORT}`);
 })
+
+console.log(process.env);
 
 
 
