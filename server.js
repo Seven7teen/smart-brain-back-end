@@ -12,13 +12,23 @@ const profile = require('./controllers/profile');
 const db = require('knex')({
   client: 'pg',
   connection: {
-    host : '127.0.0.1',
-    port : 5432,
-    user : 'postgres',
-    password : 'Aditya@123',
-    database : 'smart-brain'
+    connectionString: process.env.DATABASE_URL,
+    ssl: true
   }
 });
+
+
+/* below codes were active till it was run on localhost, now to run on heroku, we need to use above code*/
+// const db = require('knex')({
+//   client: 'pg',
+//   connection: {
+//     host : '127.0.0.1',
+//     port : 5432,
+//     user : 'postgres',
+//     password : 'Aditya@123',
+//     database : 'smart-brain'
+//   }
+// });
 
 // console.log(db.select('*').from('users'));
 
